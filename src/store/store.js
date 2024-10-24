@@ -4,13 +4,15 @@ import todoState from "./todoState";
 import basketState from "./basketState";
 import registrationState from "./registrationState";
 import loginState from "./loginState";
+import productsState from "./productsState";
 const store = configureStore({
   reducer: {
     todo: todoState,
     basket: basketState,
     register: registrationState,
     login: loginState,
-    // ...more reducers can be added here.
+    products: productsState,
+   
   },
   // other store option
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

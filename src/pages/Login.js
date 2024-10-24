@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../store/loginState";
 import { add } from "../store/registrationState";
 
-import TotalPrice from "./TotalPrice";
+import TotalPrice from "../components/TotalPrice";
 
 
 // function expression to validate all form input fields.
@@ -42,7 +42,7 @@ const Login = ({
   const loggedIn = useSelector((state) => state.login.loggedIn);
   const userList = useSelector((state) => state.register.list);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   {
     /* initializes the formik hook values */

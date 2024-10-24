@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Create a slice of the Redux store for Todo items
 const registrationSlice = createSlice({
-  name: "Todo", // Name of the slice
+  name: "Register", // Name of the slice
   initialState: {
     // Initial state of the slice
     list: [],

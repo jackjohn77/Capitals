@@ -1,6 +1,12 @@
 // Import useState, UseEffect, useRef
 import React, { useState } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+
+import { logout } from "../store/loginState";
+import { add } from "../store/registrationState";
+import { } from "../store/productsState";
+
 // Import react components
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -11,115 +17,22 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // Import child components
-import TotalPrice from "./TotalPrice";
+import TotalPrice from "../components/TotalPrice";
 
-// Import images
-import cap1 from "../images/cap1.png";
-import cap2 from "../images/cap2.png";
-import cap3 from "../images/cap3.png";
-import cap4 from "../images/cap4.png";
-import cap5 from "../images/cap5.png";
-import cap6 from "../images/cap6.png";
-import cap7 from "../images/cap7.png";
-import cap8 from "../images/cap8.png";
-import cap9 from "../images/cap9.png";
-import cap10 from "../images/cap10.png";
-
-
-// create products variable array that stores multiple products.
-const products = [
-  {
-    id: 1,
-    image: cap1,
-    title: "Wave Cap",
-    description: "Wave Cap in various colours with snap-back",
-    price: 9.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 2,
-    image: cap2,
-    title: "Pizza Planet Cap",
-    description: "Pizza Planet cap in various colours with snap-back",
-    price: 11.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 3,
-    image: cap3,
-    title: "LA Cap",
-    description: "LA Cap in various colours with snap-back",
-    price: 10.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 4,
-    image: cap4,
-    title: "Focus Cap",
-    description: "Focus Cap in various colours with snap-back",
-    price: 15.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 5,
-    image: cap5,
-    title: "Sun Flower Cap",
-    description: "Wave Cap in various colours with snap-back",
-    price: 8.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 6,
-    image: cap6,
-    title: "Croissant Cap",
-    description: "Croissant Cap in various colours with snap-back",
-    price: 20.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 7,
-    image: cap7,
-    title: "Star Cap",
-    description: "Star Cap in various colours with snap-back",
-    price: 15.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 8,
-    image: cap8,
-    title: "Humming Bird Cap",
-    description: "Humming Bird Cap in various colours with snap-back",
-    price: 14.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 9,
-    image: cap9,
-    title: "Bear Golf Cap",
-    description: "Bear Golf in various colours with snap-back",
-    price: 12.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-  {
-    id: 10,
-    image: cap10,
-    title: "Sun Cap",
-    description: "Sun Cap in various colours with snap-back",
-    price: 11.99,
-    colours: ["Red", "Blue", "Green"],
-  },
-];
 
 // Products page component with props received from App.js
 export default function Products({
-  username,
-  loggedIn,
-  setLoggedIn,
+  
+
   totalPrice,
   setTotalPrice,
   hasPurchased,
   setHasPurchased,
 }) {
+  const username = useSelector((state) => state.login.username);
+  const loggedIn = useSelector((state) => state.login.loggedIn);
+  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
 
   // Create local state that creates and array with matching length to the
   // products array with the initial value being Choose Colour for each.
@@ -152,7 +65,7 @@ export default function Products({
             {/* Responsive element shows when user is logged in */}
             {loggedIn ? (
               <p>
-                Logged in as {username} <a href="#" onClick={() => setLoggedIn(false)}>(Logout)</a>
+                Logged in as {username} <a href="#" onClick={() => dispatch(logout())}>(Logout)</a>
               </p>
             ) : (
               <p>You are not logged in</p>

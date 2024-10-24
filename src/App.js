@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
-import Home from "./components/Home";
-import Products from "./components/Products";
-import About from "./components/About";
-import Login from "./components/Login";
-import Registration from "./components/Registration";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
 import "./App.css";
 
 function App() {
   // States for keeping username, logged in, total price and has purchased.
   // these are passed to various child components and pages to preserve data
   // when moving between pages.
-
-  // Create the username state variable. Used to store the username.
-  const [username, setUsername] = useState("");
-
-  //Create the loggedIn boolean state variable. Shows true when user is.
-  // logged in.
-  const [loggedIn, setLoggedIn] = useState(false);
 
   // Create totalPrice state variable. Adds up items when buy button clicked.
   const [totalPrice, setTotalPrice] = useState(0);
@@ -46,52 +39,26 @@ function App() {
             path="/products"
             element={
               <Products
-                username={username}
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
-                totalPrice={totalPrice}
-                setTotalPrice={setTotalPrice}
-                hasPurchased={hasPurchased}
-                setHasPurchased={setHasPurchased}
+
               />
             }
           />
           <Route
             path="/about"
             element={
-              <About
-                username={username}
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
-                totalPrice={totalPrice}
-                hasPurchased={hasPurchased}
-              />
+              <About/>
             }
           />
           <Route
             path="/login"
             element={
-              <Login
-                username={username}
-                setUsername={setUsername}
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
-                totalPrice={totalPrice}
-                hasPurchased={hasPurchased}
-                              />
+              <Login/>
             }
           />
           <Route
             path="/register"
             element={
-              <Registration
-                username={username}
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
-                totalPrice={totalPrice}
-                hasPurchased={hasPurchased}
-
-              />
+              <Registration/>
             }
           />
         </Routes>

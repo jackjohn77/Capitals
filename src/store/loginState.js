@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Create a slice of the Redux store for Todo items
 const loginSlice = createSlice({
-  name: "Todo", // Name of the slice
+  name: "Login", // Name of the slice
   initialState: {
     // Initial state of the slice
     loggedIn: false,

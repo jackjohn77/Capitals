@@ -3,12 +3,12 @@ import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
 import { useFormik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "../store/registrationState";
-import Icon from "./Icon";
-import EditModal from "./EditModal";
+import Icon from "../components/Icon";
+import EditModal from "../components/EditModal";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Import child components
-import TotalPrice from "./TotalPrice";
+import TotalPrice from "../components/TotalPrice";
 
 
 
