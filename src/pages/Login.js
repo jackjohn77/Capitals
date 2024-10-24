@@ -81,18 +81,6 @@ const Login = ({
         <Row className="align-items-center justify-content-between">
           <Col className="text-start">
             <h2>Login Page</h2>
-
-            {/* Responsive element shows when user is logged in */}
-            {loggedIn ? (
-              <p>
-                Logged in as {username}{" "}
-                <a href="#" onClick={() => dispatch(logout())}>
-                  (Logout)
-                </a>
-              </p>
-            ) : (
-              <p>You are not logged in</p>
-            )}
           </Col>
           <Col className="text-end">
             {/* Responsive element shows when user has clicked any buy button */}
