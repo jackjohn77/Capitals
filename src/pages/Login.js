@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../store/loginState";
-import { add } from "../store/registrationState";
+import {  } from "../store/registrationState";
 
 import TotalPrice from "../components/TotalPrice";
 

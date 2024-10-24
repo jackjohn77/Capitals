@@ -59,9 +59,6 @@ const validate = (values) => {
 
 // function expression will many props to allow for setting or retrieval of states
 const Registration = ({
-
-
-  setLoggedIn,
   totalPrice,
   hasPurchased,
 }) => {

@@ -36,16 +36,16 @@ export default function Products({
 
   // Create local state that creates and array with matching length to the
   // products array with the initial value being Choose Colour for each.
-  const [selectedcolours, setSelectedcolours] = useState(
+  const [selectedColours, setSelectedColours] = useState(
     Array(products.length).fill("Choose Colour")
   );
 
   // function that updates the selected colour state value when a colour is
   // selected. 
   const handleSelect = (color, index) => {
-    const newSelectedcolours = [...selectedcolours];
-    newSelectedcolours[index] = color;
-    setSelectedcolours(newSelectedcolours);
+    const newSelectedColours = [...selectedColours];
+    newSelectedColours[index] = color;
+    setSelectedColours(newSelectedColours);
   };
   // handles the buy button click but updating the Total price parent state
   // and sets the has purchased to True to allow for total price element to 
@@ -99,8 +99,8 @@ export default function Products({
                     variant="outline-light"
                     id="dropdown-basic-button"
                     title={
-                      <span style={{ color: selectedcolours[index] }}>
-                        {selectedcolours[index]}
+                      <span style={{ color: selectedColours[index] }}>
+                        {selectedColours[index]}
                       </span>
                     }
                     onSelect={(eventKey) => handleSelect(eventKey, index)}
