@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/loginState";
 import { add } from "../store/registrationState";
 import { } from "../store/productsState";
+import { basketAdd } from "../store/basketState";
 
 // Import react components
 import Button from "react-bootstrap/Button";
@@ -29,8 +30,8 @@ export default function Products({
   hasPurchased,
   setHasPurchased,
 }) {
-  const username = useSelector((state) => state.login.username);
-  const loggedIn = useSelector((state) => state.login.loggedIn);
+
+  const products = useSelector((state) => state.products.products);
   const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
 

@@ -6,17 +6,21 @@ const basketSlice = createSlice({
   initialState: {
     // Initial state of the slice
     basket: [],
+    quantity: 0,
+    total:0,
   },
   reducers: {
     // Function to add a new task
-    add: (state, action) => {
-      state.list.push(action.payload); // Add new task to the list
+    basketAdd: (state, action) => {
+      state.basket.push(action.payload); // Add new task to the list
+      state.quantity += 1; // Increment total task count
+      state.total += 1;
     },
   },
 });
 
 // Export the action functions to be used in components
-export const { add } = basketSlice.actions;
+export const { basketAdd } = basketSlice.actions;
 
 // Export the reducer function to be used in the store
 export default basketSlice.reducer;
