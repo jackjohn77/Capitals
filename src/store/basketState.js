@@ -14,7 +14,7 @@ const basketSlice = createSlice({
     basketAdd: (state, action) => {
       state.basket.push(action.payload); // Add new task to the list
       state.quantity += 1; // Increment total task count
-      state.total += 1;
+      state.total += action.payload.price;
     },
   },
 });

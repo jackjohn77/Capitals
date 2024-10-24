@@ -18,21 +18,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // Import child components
-import TotalPrice from "../components/TotalPrice";
+
 
 
 // Products page component with props received from App.js
 export default function Products({
   
-
-  totalPrice,
-  setTotalPrice,
-  hasPurchased,
-  setHasPurchased,
 }) {
 
   const products = useSelector((state) => state.products.products);
-  const products = useSelector((state) => state.products.products);
+  const basket = useSelector((state) => state.basket.basket);
   const dispatch = useDispatch();
 
   // Create local state that creates and array with matching length to the
@@ -51,27 +46,17 @@ export default function Products({
   // handles the buy button click but updating the Total price parent state
   // and sets the has purchased to True to allow for total price element to 
   // be shown on product and about page.
-  const handleBuyClick = (price) => {
-    setTotalPrice(totalPrice + price);
-    setHasPurchased(true);
+  const handleBuyClick = (product, color) => {
+    const productWithColor = { ...product, selectedColour: color };
+    dispatch(basketAdd(productWithColor));
+    console.table(productWithColor);
+    console.table(basket);
   };
 
   return (
     <div className="App ">
       <Container>
-        <Row className="align-items-center justify-content-between">
-          <Col className="text-start">
-            <h2>Products Page</h2>
-          </Col>
-          <Col className="text-end">
-            {/* Responsive element shows when user has clicked any buy button */}
-            {hasPurchased && <TotalPrice totalPrice={totalPrice} />}
-          </Col>
-          <hr />
-        </Row>
-        <Row>
-          <Col></Col>
-        </Row>
+
         <Row>
           {/* Map for items contained in products array  */}
           {products.map((product, index) => (
@@ -108,7 +93,7 @@ export default function Products({
                   <Button
                     variant="outline-light"
                     className="mt-3"
-                    onClick={() => handleBuyClick(product.price)}
+                    onClick={() => handleBuyClick(product, selectedColours[index])}
                   >
                     BUY
                   </Button>
