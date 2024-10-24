@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
 import { useFormik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "../store/registrationState";
+import { logout } from "../store/loginState";
 import Icon from "../components/Icon";
 import EditModal from "../components/EditModal";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -58,8 +59,8 @@ const validate = (values) => {
 
 // function expression will many props to allow for setting or retrieval of states
 const Registration = ({
-  username,
-  loggedIn,
+
+
   setLoggedIn,
   totalPrice,
   hasPurchased,
@@ -67,6 +68,10 @@ const Registration = ({
 
   // Retrieve the userList state from the store
   const userList = useSelector((state) => state.register.list);
+    const username = useSelector((state) => state.login.username);
+    const loggedIn = useSelector((state) => state.login.loggedIn);
+
+
   const dispatch = useDispatch();
 
   {
@@ -107,7 +112,7 @@ const Registration = ({
             {loggedIn ? (
               <p>
                 Logged in as {username}{" "}
-                <a href="#" onClick={() => setLoggedIn(false)}>
+                <a href="#" onClick={() => dispatch(logout())}>
                   (Logout)
                 </a>
               </p>

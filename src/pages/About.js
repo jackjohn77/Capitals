@@ -1,7 +1,5 @@
 import React from "react";
 
-import { useSelector, useDispatch } from "react-redux";
-
 // Import react components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -16,17 +14,11 @@ import store_inside from "../images/store_inside.jpg";
 // Import child components
 import TotalPrice from "../components/TotalPrice";
 
-import { logout } from "../store/loginState";
-
-
 // About page component with props received from App.js
 export default function About({ totalPrice,
   hasPurchased }) {
     // Retrieve the userList state from the store
-    const username = useSelector((state) => state.login.username);
-    const loggedIn = useSelector((state) => state.login.loggedIn);
 
-  const dispatch = useDispatch();
   
     return (
       <div className="App full-height">
@@ -34,18 +26,6 @@ export default function About({ totalPrice,
           <Row className="align-items-center justify-content-between">
             <Col className="text-start">
               <h2>About Page</h2>
-
-              {/* Responsive element shows when user is logged in */}
-              {loggedIn ? (
-                <p>
-                  Logged in as {username}{" "}
-                  <a href="#" onClick={() => dispatch(logout())}>
-                    (Logout)
-                  </a>
-                </p>
-              ) : (
-                <p>You are not logged in</p>
-              )}
             </Col>
             <Col className="text-end">
               {/* Responsive element shows when user has clicked any buy button */}

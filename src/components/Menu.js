@@ -4,6 +4,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../store/loginState";
 
 // Import images
 import Logo_menu from "../images/Logo_menu.png";
@@ -11,6 +13,12 @@ import Logo_menu from "../images/Logo_menu.png";
 // Menu function used responsive elements to change the style of NavLinks 
 // dependent on if active.
 export default function Menu() {
+
+  const username = useSelector((state) => state.login.username);
+  const loggedIn = useSelector((state) => state.login.loggedIn);
+
+  const dispatch = useDispatch();
+
   return (
     <div className="blue-background App">
       <Container>
@@ -52,7 +60,19 @@ export default function Menu() {
                 Register
               </NavLink>
             </nav>
-            
+          </Col>
+          <Col xs={2} className="text-start">
+            {/* Responsive element shows when user is logged in */}
+            {loggedIn ? (
+              <p>
+                Logged in as {username}{" "}
+                <a href="#" onClick={() => dispatch(logout())}>
+                  (Logout)
+                </a>
+              </p>
+            ) : (
+              <p>You are not logged in</p>
+            )}
           </Col>
         </Row>
       </Container>
