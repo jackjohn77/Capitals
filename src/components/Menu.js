@@ -17,7 +17,7 @@ export default function Menu() {
 
   const username = useSelector((state) => state.login.username);
   const loggedIn = useSelector((state) => state.login.loggedIn);
-  const basketTotal = useSelector((state) => state.basket.total);
+  const basketQuantity = useSelector((state) => state.basket.quantity);
 
   const dispatch = useDispatch();
 
@@ -61,9 +61,15 @@ export default function Menu() {
               >
                 Register
               </NavLink>
+              <NavLink
+                to="/basket"
+                className={({ isActive }) => (isActive ? "active-link" : "")}
+              >
+                Basket {(basketQuantity === 0 ? "" : `(${basketQuantity})` )}
+              </NavLink>
             </nav>
           </Col>
-          <Col xs={2} className="text-start">
+          <Col xs={2} className="end-start">
             {/* Responsive element shows when user is logged in */}
             {loggedIn ? (
               <p>
