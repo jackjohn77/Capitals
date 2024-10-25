@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import Home from "./pages/Home";
@@ -10,16 +10,7 @@ import Basket from "./pages/Basket";
 import "./App.css";
 
 function App() {
-  // States for keeping username, logged in, total price and has purchased.
-  // these are passed to various child components and pages to preserve data
-  // when moving between pages.
 
-  // Create totalPrice state variable. Adds up items when buy button clicked.
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  // Create the hasPurchased boolean state variable. Shows true when user
-  // clicks buy and reveals basket amount.
-  const [hasPurchased, setHasPurchased] = useState(false);
 
 
   return (

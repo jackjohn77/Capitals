@@ -28,6 +28,7 @@ export default function Products({
 
   const products = useSelector((state) => state.products.products);
   const basket = useSelector((state) => state.basket.basket);
+  const listID = useSelector((state) => state.basket.listId);
   const dispatch = useDispatch();
 
   // Create local state that creates and array with matching length to the

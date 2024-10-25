@@ -30,16 +30,9 @@ const validate = (values) => {
 };
 
 // function expression will many props to allow for setting or retrieval of states
-const Login = ({
-
-
-  totalPrice,
-  hasPurchased,
-
-}) => {
+const Login = () => {
   // Retrieve the userList state from the store
-  const username = useSelector((state) => state.login.username);
-  const loggedIn = useSelector((state) => state.login.loggedIn);
+   const loggedIn = useSelector((state) => state.login.loggedIn);
   const userList = useSelector((state) => state.register.list);
 
   const dispatch = useDispatch();
@@ -81,10 +74,6 @@ const Login = ({
         <Row className="align-items-center justify-content-between">
           <Col className="text-start">
             <h2>Login Page</h2>
-          </Col>
-          <Col className="text-end">
-            {/* Responsive element shows when user has clicked any buy button */}
-            {hasPurchased && <TotalPrice totalPrice={totalPrice} />}
           </Col>
           <hr />
         </Row>

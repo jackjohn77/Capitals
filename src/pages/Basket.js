@@ -5,16 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { logout } from "../store/loginState";
 import { add } from "../store/registrationState";
-import { basketAdd } from "../store/basketState";
+import { basketAdd, basketDecrease, basketDelete } from "../store/basketState";
 
 // Import react components
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Button, Table, Row, Col, Container } from "react-bootstrap";
+
+
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
+
+import trash from "../images/trash.png";
 
 // Import child components
 
@@ -22,45 +23,73 @@ import Col from "react-bootstrap/Col";
 export default function Basket({}) {
 
   const basket = useSelector((state) => state.basket.basket);
+  const totalPrice = useSelector((state) => state.basket.total);
   const dispatch = useDispatch();
 
-  // Create local state that creates and array with matching length to the
-  // products array with the initial value being Choose Colour for each
-
-  // function that updates the selected colour state value when a colour is
-  // selected.
-
-  // handles the buy button click but updating the Total price parent state
-  // and sets the has purchased to True to allow for total price element to
-  // be shown on product and about page.
-
+  const handleAddClick = (product, color) => {
+    const productWithColor = { ...product, selectedColour: color };
+    dispatch(basketAdd(productWithColor));
+    console.table(productWithColor);
+    console.table(basket);
+  }
+  
 
   return (
     <div className="App ">
       <Container>
-        <Row>
-          {/* Map for items contained in products array  */}
-          {basket.map((basketItems, index) => (
-            <Col md={4} key={basketItems.id} className="mb-4">
-              <Card>
-                <Card.Img
-                  className="blue-background"
-                  variant="top"
-                  src={basketItems.image}
-                  alt={basketItems.title}
-                />
-                <Card.Body className="blue-background text-white">
-                  <Card.Title>{basketItems.title}</Card.Title>
-                  <Card.Text>{basketItems.description}</Card.Text>
-                  <Card.Text>£{basketItems.price}</Card.Text>
-                  <Card.Text>Color: {basketItems.selectedColor}</Card.Text>
-                  
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <h1>Total basket price £{totalPrice.toFixed(2)}</h1>
+        <Table className="content" striped bordered hover>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Item</th>
+              <th className="actions-column">Selection</th>
+              <th className="actions-column">cost</th>
+              <th>Qty</th>
+              <th>Edit</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {basket.map((basketItems, index) => (
+              <tr key={index}>
+                <td>
+                  <img
+                    src={basketItems.image}
+                    alt={basketItems.title}
+                    width="30px"
+                  ></img>
+                </td>
+                <td>{basketItems.title}</td>
+                <td>{basketItems.selectedColour}</td>
+                <td>{basketItems.quantity}</td>
+                <td className="button-group">
+                  <Button
+                    variant="light"
+                    onClick={() => dispatch(basketAdd(basketItems))}
+                  >
+                    +
+                  </Button>
+                  <Button
+                    variant="light"
+                    onClick={() => dispatch(basketDecrease(index))} // Open the edit modal with the current task
+                  >
+                    -
+                  </Button>
+                  <Button
+                    variant="light"
+                    onClick={() => dispatch(basketDelete(index))} // Delete the task
+                  >
+                    <img src={trash} alt="del" width="10px"></img>
+                  </Button>
+                </td>
+                <td>{basketItems.total}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </Container>
     </div>
   );
-}
+  }
+  
