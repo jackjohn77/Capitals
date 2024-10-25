@@ -25,13 +25,6 @@ export default function Basket({}) {
   const basket = useSelector((state) => state.basket.basket);
   const totalPrice = useSelector((state) => state.basket.total);
   const dispatch = useDispatch();
-
-  const handleAddClick = (product, color) => {
-    const productWithColor = { ...product, selectedColour: color };
-    dispatch(basketAdd(productWithColor));
-    console.table(productWithColor);
-    console.table(basket);
-  }
   
 
   return (
@@ -45,9 +38,9 @@ export default function Basket({}) {
               <th>Item</th>
               <th className="actions-column">Selection</th>
               <th className="actions-column">cost</th>
-              <th>Qty</th>
-              <th>Edit</th>
+              <th>Qty</th>             
               <th>Total</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -61,9 +54,12 @@ export default function Basket({}) {
                   ></img>
                 </td>
                 <td>{basketItems.title}</td>
+
                 <td>{basketItems.selectedColour}</td>
+                <td>{basketItems.price}</td>
                 <td>{basketItems.quantity}</td>
-                <td className="button-group">
+                
+                <td>{basketItems.quantity * basketItems.price}</td><td className="button-group">
                   <Button
                     variant="light"
                     onClick={() => dispatch(basketAdd(basketItems))}
@@ -83,7 +79,6 @@ export default function Basket({}) {
                     <img src={trash} alt="del" width="10px"></img>
                   </Button>
                 </td>
-                <td>{basketItems.total}</td>
               </tr>
             ))}
           </tbody>
