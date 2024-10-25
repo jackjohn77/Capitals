@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { edit } from "../store/todoState";
+//import { edit } from "../store/todoState";
 
-export default function EditModal({ task, index, show, handleClose }) {
+/*export default function EditModal({ task, index, show, handleClose }) {
   const [editedContent, setEditedContent] = useState(task.content); // State to hold the edited content
   const dispatch = useDispatch(); // Hook to dispatch actions
   const [warning, setWarning] = useState(false); // State to handle the warning message
@@ -50,3 +50,4 @@ export default function EditModal({ task, index, show, handleClose }) {
     </Modal>
   );
 }
+*/
