@@ -3,10 +3,9 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { logout } from "../store/loginState";
-import { add } from "../store/registrationState";
 import { } from "../store/productsState";
 import { basketAdd } from "../store/basketState";
+import { showModal } from "../store/reusableModalState";
 
 // Import react components
 import Button from "react-bootstrap/Button";
@@ -18,7 +17,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // Import child components
-
+import ReusableModal from "../components/ReusableModal";
 
 
 // Products page component with props received from App.js
@@ -28,8 +27,8 @@ export default function Products({
 
   const products = useSelector((state) => state.products.products);
   const basket = useSelector((state) => state.basket.basket);
-  const listID = useSelector((state) => state.basket.listId);
   const dispatch = useDispatch();
+
 
   // Create local state that creates and array with matching length to the
   // products array with the initial value being Choose Colour for each.
@@ -48,16 +47,21 @@ export default function Products({
   // and sets the has purchased to True to allow for total price element to 
   // be shown on product and about page.
   const handleBuyClick = (product, color) => {
-    const productWithColor = { ...product, selectedColour: color };
-    dispatch(basketAdd(productWithColor));
-    console.table(productWithColor);
-    console.table(basket);
+    if (color === "Choose Colour") {
+ 
+      dispatch(showModal("Please select a colour?"));
+    } else {
+  
+      const productWithColor = { ...product, selectedColour: color };
+      dispatch(basketAdd(productWithColor));
+      console.table(productWithColor);
+      console.table(basket);
+    }
   };
 
   return (
     <div className="App ">
       <Container>
-
         <Row>
           {/* Map for items contained in products array  */}
           {products.map((product, index) => (
@@ -94,7 +98,9 @@ export default function Products({
                   <Button
                     variant="outline-light"
                     className="mt-3"
-                    onClick={() => handleBuyClick(product, selectedColours[index])}
+                    onClick={() =>
+                      handleBuyClick(product, selectedColours[index])
+                    }
                   >
                     BUY
                   </Button>
@@ -103,6 +109,7 @@ export default function Products({
             </Col>
           ))}
         </Row>
+        <ReusableModal />
       </Container>
     </div>
   );

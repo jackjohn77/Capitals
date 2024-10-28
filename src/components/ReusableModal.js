@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css"; // Import Bootstrap Icons CSS
+import { useSelector, useDispatch } from "react-redux";
 
-export default function ReusableModal({ showModal, message }) {
+import { hideModal } from "../store/reusableModalState";
+
+
+export default function ReusableModal({}) {
+  const show = useSelector((state) => state.reusableModal.showModal);
+  const message = useSelector((state) => state.reusableModal.message);
+  const dispatch = useDispatch();
   // Ensure props are destructured
-  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    setShow(showModal);
-  }, [showModal]);
 
-  const handleClose = () => setShow(false);
+
+
+  const handleClose = () => dispatch(hideModal());
 
   return (
     <>

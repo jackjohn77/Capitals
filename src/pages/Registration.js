@@ -4,9 +4,7 @@ import { useFormik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { add } from "../store/registrationState";
-import {} from "../store/loginState";
-import Icon from "../components/Icon";
-import EditModal from "../components/EditModal";
+import { showModal } from "../store/reusableModalState";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Import child components
@@ -62,11 +60,9 @@ const Registration = () => {
   // Retrieve the userList state from the store
   const userList = useSelector((state) => state.register.list);
   const loggedIn = useSelector((state) => state.login.loggedIn);
+  
 
   const dispatch = useDispatch();
-
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
 
   {
     /* initializes the formik hook values */
@@ -84,9 +80,10 @@ const Registration = () => {
     // On submit the new user details are added to the userList state
     onSubmit: (values, { resetForm }) => {
       dispatch(add(values));
-      setShowModal(true);
-      setModalMessage(
-        `${values.name} you are now registered! Please login to continue.`
+      dispatch(
+        showModal(
+          `${values.name} you are now registered! Please login to continue.`
+        )
       );
       resetForm();
     },
@@ -207,7 +204,7 @@ const Registration = () => {
             </Button>
           </Col>
         </Row>
-        <ReusableModal showModal={showModal} message={modalMessage} />
+        <ReusableModal/>
       </Container>
     </Form>
   );

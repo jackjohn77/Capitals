@@ -11,12 +11,10 @@ import logo_lrg from "../images/logo_lrg.png";
 import store_front from "../images/store_front.jpg";
 import store_inside from "../images/store_inside.jpg";
 
-// Import child components
-import TotalPrice from "../components/TotalPrice";
+
 
 // About page component with props received from App.js
-export default function About({ totalPrice,
-  hasPurchased }) {
+export default function About() {
     // Retrieve the userList state from the store
 
   
@@ -26,10 +24,6 @@ export default function About({ totalPrice,
           <Row className="align-items-center justify-content-between">
             <Col className="text-start">
               <h2>About Page</h2>
-            </Col>
-            <Col className="text-end">
-              {/* Responsive element shows when user has clicked any buy button */}
-              {hasPurchased && <TotalPrice totalPrice={totalPrice} />}
             </Col>
             <hr />
           </Row>

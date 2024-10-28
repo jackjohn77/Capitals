@@ -5,8 +5,10 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../store/loginState";
-import {  } from "../store/registrationState";
+import { login} from "../store/loginState";
+import { } from "../store/registrationState";
+import { } from "../store/registrationState";
+import { showModal } from "../store/reusableModalState";
 
 import ReusableModal from "../components/ReusableModal";
 
@@ -37,9 +39,6 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
-
   {
     /* initializes the formik hook values */
   }
@@ -63,8 +62,8 @@ const Login = () => {
         dispatch(login(user.name));
         resetForm();
       } else {
-        setShowModal(true);
-        setModalMessage("Invalid login credentials.");
+     
+        dispatch(showModal("Invalid login credentials."));
       }
     },
   });
@@ -123,7 +122,7 @@ const Login = () => {
             </Button>
           </Col>
         </Row>
-        <ReusableModal showModal={showModal} message={modalMessage}/>
+        <ReusableModal />
       </Container>
     </Form>
   );
