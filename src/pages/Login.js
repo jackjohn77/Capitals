@@ -1,6 +1,6 @@
 // Import react components
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
+import React, { useState } from "react";
 // Import formik state
 import { useFormik } from "formik";
 
@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../store/loginState";
 import {  } from "../store/registrationState";
 
-import TotalPrice from "../components/TotalPrice";
+import ReusableModal from "../components/ReusableModal";
 
 
 // function expression to validate all form input fields.
@@ -32,10 +32,13 @@ const validate = (values) => {
 // function expression will many props to allow for setting or retrieval of states
 const Login = () => {
   // Retrieve the userList state from the store
-   const loggedIn = useSelector((state) => state.login.loggedIn);
+  const loggedIn = useSelector((state) => state.login.loggedIn);
   const userList = useSelector((state) => state.register.list);
 
   const dispatch = useDispatch();
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   {
     /* initializes the formik hook values */
@@ -56,10 +59,12 @@ const Login = () => {
           user.email === values.email && user.password === values.password
       );
       if (user) {
+
         dispatch(login(user.name));
         resetForm();
       } else {
-        alert("Invalid login credentials.");
+        setShowModal(true);
+        setModalMessage("Invalid login credentials.");
       }
     },
   });
@@ -118,6 +123,7 @@ const Login = () => {
             </Button>
           </Col>
         </Row>
+        <ReusableModal showModal={showModal} message={modalMessage}/>
       </Container>
     </Form>
   );
