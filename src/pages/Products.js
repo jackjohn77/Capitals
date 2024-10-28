@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { } from "../store/productsState";
 import { basketAdd } from "../store/basketState";
 import { showModal } from "../store/reusableModalState";
 

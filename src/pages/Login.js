@@ -1,13 +1,12 @@
 // Import react components
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import React, { useState } from "react";
+import React from "react";
 // Import formik state
 import { useFormik } from "formik";
 
 import { useSelector, useDispatch } from "react-redux";
 import { login} from "../store/loginState";
-import { } from "../store/registrationState";
-import { } from "../store/registrationState";
+
 import { showModal } from "../store/reusableModalState";
 
 import ReusableModal from "../components/ReusableModal";

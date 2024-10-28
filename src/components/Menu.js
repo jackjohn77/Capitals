@@ -6,7 +6,6 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/loginState";
-import { } from "../store/basketState";
 
 // Import images
 import Logo_menu from "../images/Logo_menu.png";

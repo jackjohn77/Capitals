@@ -6,9 +6,26 @@ const basketSlice = createSlice({
   initialState: {
     // Initial state of the slice
     basket: [],
+    shipment: [
+      {
+        type: "Standard",
+        cost: 5.99,
+        del: "3-5",
+        info: "Standard delivery costs 5.99 and typically takes 3-5 working days. You can track your package and expect delivery from Monday to Saturday between 9 AM and 6 PM.",
+        selected: true,
+      },
+      {
+        type: "Premium",
+        cost: 9.99,
+        del: "1-2",
+        info: "Premium delivery costs £9.99 and ensures your package arrives within 1-2 working days. This service includes tracking and delivers seven days a week, with delivery hours from 8 AM to 8 PM.",
+        selected: false,
+      },
+    ],
     quantity: 0,
     total: 0,
     listId: 0,
+    shipmentCost: 5.99,
   },
   reducers: {
     // Function to add a new task
@@ -47,14 +64,22 @@ const basketSlice = createSlice({
 
     basketDelete: (state, action) => {
       state.total -=
-        state.basket[action.payload].price * state.basket[action.payload].quantity;
+        state.basket[action.payload].price *
+        state.basket[action.payload].quantity;
       state.basket.splice(action.payload, 1);
+    },
+
+    shippingCheck: (state, action) => {
+      state.shipment.forEach((ship) => { ship.selected = false });
+      state.shipment[action.payload].selected = true;
+      state.shipmentCost = state.shipment[action.payload].cost;
     },
   },
 });
 
 // Export the action functions to be used in components
-export const { basketAdd, basketDecrease, basketDelete } = basketSlice.actions;
+export const { basketAdd, basketDecrease, basketDelete, shippingCheck } =
+  basketSlice.actions;
 
 // Export the reducer function to be used in the store
 export default basketSlice.reducer;

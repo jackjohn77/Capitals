@@ -2,7 +2,7 @@
 import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
 import { useFormik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
-import React, { useState } from "react";
+import React from "react";
 import { add } from "../store/registrationState";
 import { showModal } from "../store/reusableModalState";
 import "bootstrap-icons/font/bootstrap-icons.css";
