@@ -1,20 +1,22 @@
-// Import useState, UseEffect, useRef
+// Import frameworks and library's
 import React from "react";
-
 import { useSelector, useDispatch } from "react-redux";
+import { Button, Table, Container } from "react-bootstrap";
 
+// Import store Slice reducers.
 import { basketAdd, basketDecrease, basketDelete } from "../store/basketState";
 
-// Import react components
-import { Button, Table, Row, Col, Container } from "react-bootstrap";
-
+// Import image
 import trash from "../images/trash.png";
 
-// Import child components
+// Basket table component, takes the array objects from the basketState and
+// populates a table with ability to edit the quantity and delete via buttons.
+export default function BasketTable({ }) {
 
-// Products page component with props received from App.js
-export default function BasketTable({}) {
+  // Retrieve the basket state from the Redux store.
   const basket = useSelector((state) => state.basket.basket);
+
+  // Retrieve the totalPrice state from the Redux store
   const totalPrice = useSelector((state) => state.basket.total);
   const dispatch = useDispatch();
 
@@ -60,7 +62,7 @@ export default function BasketTable({}) {
                   </Button>
                   <Button
                     variant="light"
-                    onClick={() => dispatch(basketDecrease(index))} // Open the edit modal with the current task
+                    onClick={() => dispatch(basketDecrease(index))}
                   >
                     -
                   </Button>
@@ -74,10 +76,11 @@ export default function BasketTable({}) {
               </tr>
             ))}
             <tr>
-              <td colSpan="5" style={{ textAlign: "right" }}><strong>Total:</strong></td>
+              <td colSpan="5" style={{ textAlign: "right" }}>
+                <strong>Total:</strong>
+              </td>
               <td>{totalPrice.toFixed(2)}</td>
               <td></td>
-            
             </tr>
           </tbody>
         </Table>

@@ -1,88 +1,69 @@
+// Import frameworks and library's
 import React from "react";
-
-// Import react components
 import { NavLink } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+
+// Import store Slice reducers.
 import { logout } from "../store/loginState";
 
-// Import images
+// Import image
 import Logo_menu from "../images/Logo_menu.png";
 
-// Menu function used responsive elements to change the style of NavLinks 
-// dependent on if active.
 export default function Menu() {
-
   const username = useSelector((state) => state.login.username);
   const loggedIn = useSelector((state) => state.login.loggedIn);
   const basketQuantity = useSelector((state) => state.basket.quantity);
-
   const dispatch = useDispatch();
 
   return (
-    <div className="blue-background App">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Row className="align-items-center">
-          <Col xs={2} className="text-start">
-            <img src={Logo_menu} alt="logo" height="80px" />
-          </Col>
-          <Col xs={8} className="text-center">
-            <nav>
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) => (isActive ? "active-link" : "")}
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="/products"
-                className={({ isActive }) => (isActive ? "active-link" : "")}
-              >
-                Products
-              </NavLink>
-              <NavLink
-                to="/about"
-                className={({ isActive }) => (isActive ? "active-link" : "")}
-              >
-                About
-              </NavLink>
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "active-link" : "")}
-              >
-                Login
-              </NavLink>
-              <NavLink
-                to="/register"
-                className={({ isActive }) => (isActive ? "active-link" : "")}
-              >
-                Register
-              </NavLink>
-              <NavLink
-                to="/basket"
-                className={({ isActive }) => (isActive ? "active-link" : "")}
-              >
-                Basket {(basketQuantity === 0 ? "" : `(${basketQuantity})` )}
-              </NavLink>
-            </nav>
-          </Col>
-          <Col xs={2} className="end-start">
-            {/* Responsive element shows when user is logged in */}
-            {loggedIn ? (
-              <p>
+        <Navbar.Brand href="/">
+          <img src={Logo_menu} alt="logo" height="40" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <NavLink to="/" end className="nav-link">
+              Home
+            </NavLink>
+            <NavLink to="/products" className="nav-link">
+              Products
+            </NavLink>
+            <NavLink to="/about" className="nav-link">
+              About
+            </NavLink>
+            <NavLink to="/login" className="nav-link">
+              Login
+            </NavLink>
+            <NavLink to="/register" className="nav-link">
+              Register
+            </NavLink>
+            <NavLink to="/basket" className="nav-link">
+              Basket {basketQuantity === 0 ? "" : `(${basketQuantity})`}
+            </NavLink>
+          </Nav>
+          {loggedIn ? (
+            <Nav className="ml-auto">
+              <Navbar.Text className="text-white">
                 Logged in as {username}{" "}
-                <a href="#" onClick={() => dispatch(logout())}>
+                <a
+                  href="#"
+                  className="text-white"
+                  onClick={() => dispatch(logout())}
+                >
                   (Logout)
                 </a>
-              </p>
-            ) : (
-              <p>You are not logged in</p>
-            )}
-          </Col>
-        </Row>
+              </Navbar.Text>
+            </Nav>
+          ) : (
+            <Navbar.Text className="text-white">
+              You are not logged in
+            </Navbar.Text>
+          )}
+        </Navbar.Collapse>
       </Container>
-    </div>
+    </Navbar>
   );
 }

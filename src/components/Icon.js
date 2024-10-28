@@ -1,10 +1,10 @@
+// Import frameworks and library's
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css"; // Import Bootstrap Icons CSS
-import { useSelector,} from "react-redux";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { useSelector } from "react-redux";
 
-
-export default function Icon({index}) {
+export default function Icon({ index }) {
   const shipping = useSelector((state) => state.basket.shipment);
 
   const [show, setShow] = useState(false);

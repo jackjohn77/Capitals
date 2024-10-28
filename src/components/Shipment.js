@@ -1,16 +1,13 @@
-// Import useState, UseEffect, useRef
+// Import frameworks and library's
 import React from "react";
-
 import { useSelector, useDispatch } from "react-redux";
+import { Table, Container } from "react-bootstrap";
 
-import Icon from "../components/Icon";
+// Import store Slice reducers.
 import { shippingCheck } from "../store/basketState";
 
-// Import react components
-import { Button, Table, Row, Col, Container } from "react-bootstrap";
-
-
 // Import child components
+import Icon from "../components/Icon";
 
 // Products page component with props received from App.js
 export default function Shipment({}) {
@@ -46,7 +43,7 @@ export default function Shipment({}) {
                   ></input>
                 </td>
                 <td>
-                  {shippingItems.type} <Icon index={index}/>
+                  {shippingItems.type} <Icon index={index} />
                 </td>
                 <td>{shippingItems.del}</td>
                 <td>{shippingItems.cost}</td>
