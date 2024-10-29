@@ -11,7 +11,7 @@ import Shipment from "../components/Shipment";
 // Products page component with props received from App.js
 export default function Basket() {
   return (
-    <Container>
+    <Container className="App full-height">
       <Row>
         <Col md={8} >
           <BasketTable />
@@ -22,5 +22,5 @@ export default function Basket() {
       </Row>
     </Container>
   );
-  }
+}
   

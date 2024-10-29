@@ -9,8 +9,9 @@ import { basketAdd, basketDecrease, basketDelete } from "../store/basketState";
 // Import image
 import trash from "../images/trash.png";
 
-// Basket table component, takes the array objects from the basketState and
-// populates a table with ability to edit the quantity and delete via buttons.
+/* Basket table component, takes the array objects from the basketState and
+populates a table using map function with ability to edit the quantity 
+and delete via buttons. Button clicks invoke the the basketState reducers*/
 export default function BasketTable({ }) {
 
   // Retrieve the basket state from the Redux store.
@@ -21,8 +22,8 @@ export default function BasketTable({ }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="App ">
-      <Container>
+    <div className="full-height">
+      <Container className="table-container grey-background">
         <h1>Basket</h1>
         <Table className="content" striped bordered hover>
           <thead>
@@ -56,19 +57,19 @@ export default function BasketTable({ }) {
                 <td className="button-group">
                   <Button
                     variant="light"
-                    onClick={() => dispatch(basketAdd(basketItems))}
+                    onClick={() => dispatch(basketAdd(basketItems))} // Increase the basket item.
                   >
                     +
                   </Button>
                   <Button
                     variant="light"
-                    onClick={() => dispatch(basketDecrease(index))}
+                    onClick={() => dispatch(basketDecrease(index))} // Decrease the basket item.
                   >
                     -
                   </Button>
                   <Button
                     variant="light"
-                    onClick={() => dispatch(basketDelete(index))} // Delete the task
+                    onClick={() => dispatch(basketDelete(index))} // Delete the whole basket item.
                   >
                     <img src={trash} alt="del" width="10px"></img>
                   </Button>

@@ -1,5 +1,5 @@
 // Import frameworks and library's
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,44 +10,76 @@ import { logout } from "../store/loginState";
 // Import image
 import Logo_menu from "../images/Logo_menu.png";
 
+/* Menu bar component displayed on every page at the top containing company
+logo, login status and navigation links. The link change  */
+
 export default function Menu() {
+
+  // Retrieve the loginState from the Redux store.
   const username = useSelector((state) => state.login.username);
   const loggedIn = useSelector((state) => state.login.loggedIn);
+
+  // Retrieve the basketState from the Redux store.
   const basketQuantity = useSelector((state) => state.basket.quantity);
   const dispatch = useDispatch();
 
+ const [expanded, setExpanded] = useState(false);
+
+  const handleToggle = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleLinkClick = () => {
+    setExpanded(false);
+  };
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg" expanded={expanded}>
       <Container>
         <Navbar.Brand href="/">
-          <img src={Logo_menu} alt="logo" height="40" />
+          <img src={Logo_menu} alt="Brand logo - Capitals" height="100" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          onClick={handleToggle}
+        />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto d-lg-flex text-end">
             <NavLink to="/" end className="nav-link">
               Home
             </NavLink>
-            <NavLink to="/products" className="nav-link">
+            <NavLink
+              to="/products"
+              className="nav-link"
+              onClick={handleLinkClick}
+            >
               Products
             </NavLink>
-            <NavLink to="/about" className="nav-link">
+            <NavLink to="/about" className="nav-link" onClick={handleLinkClick}>
               About
             </NavLink>
-            <NavLink to="/login" className="nav-link">
+            <NavLink to="/login" className="nav-link" onClick={handleLinkClick}>
               Login
             </NavLink>
-            <NavLink to="/register" className="nav-link">
+            <NavLink
+              to="/register"
+              className="nav-link"
+              onClick={handleLinkClick}
+            >
               Register
             </NavLink>
-            <NavLink to="/basket" className="nav-link">
+            <NavLink
+              to="/basket"
+              className="nav-link"
+              onClick={handleLinkClick}
+            >
               Basket {basketQuantity === 0 ? "" : `(${basketQuantity})`}
             </NavLink>
           </Nav>
           {loggedIn ? (
-            <Nav className="ml-auto">
+            <Nav className="ms-auto w-100 justify-content-end text-end">
               <Navbar.Text className="text-white">
-                Logged in as {username}{" "}
+                Logged in as {username}
                 <a
                   href="#"
                   className="text-white"
@@ -58,7 +90,7 @@ export default function Menu() {
               </Navbar.Text>
             </Nav>
           ) : (
-            <Navbar.Text className="text-white">
+            <Navbar.Text className="text-white ms-auto w-100 justify-content-end text-end">
               You are not logged in
             </Navbar.Text>
           )}
