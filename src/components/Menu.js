@@ -14,7 +14,6 @@ import Logo_menu from "../images/Logo_menu.png";
 logo, login status and navigation links. The link change  */
 
 export default function Menu() {
-
   // Retrieve the loginState from the Redux store.
   const username = useSelector((state) => state.login.username);
   const loggedIn = useSelector((state) => state.login.loggedIn);
@@ -23,7 +22,8 @@ export default function Menu() {
   const basketQuantity = useSelector((state) => state.basket.quantity);
   const dispatch = useDispatch();
 
- const [expanded, setExpanded] = useState(false);
+  // Local state and handle functions that hide the menu once a link is clicked
+  const [expanded, setExpanded] = useState(false);
 
   const handleToggle = () => {
     setExpanded(!expanded);
@@ -73,7 +73,9 @@ export default function Menu() {
               className="nav-link"
               onClick={handleLinkClick}
             >
-              Basket {basketQuantity === 0 ? "" : `(${basketQuantity})`}
+              
+              {/*Shows the basket quantity when an item is added */}
+              Basket {basketQuantity === 0 ? "" : `(${basketQuantity})`} 
             </NavLink>
           </Nav>
           {loggedIn ? (

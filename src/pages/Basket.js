@@ -1,19 +1,18 @@
-// Import useState, UseEffect, useRef
+// Import frameworks and library's
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import BasketTable from "../components/BasketTable"
-import Shipment from "../components/Shipment";
-
-// Import react components
 
 // Import child components
+import BasketTable from "../components/BasketTable";
+import Shipment from "../components/Shipment";
 
-// Products page component with props received from App.js
+// Basket page contain on imported basket table component and a shipment
+// table.
 export default function Basket() {
   return (
     <Container className="App full-height">
       <Row>
-        <Col md={8} >
+        <Col md={8}>
           <BasketTable />
         </Col>
         <Col md={4}>
@@ -23,4 +22,3 @@ export default function Basket() {
     </Container>
   );
 }
-  

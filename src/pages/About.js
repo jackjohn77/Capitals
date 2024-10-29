@@ -13,10 +13,8 @@ import store_inside from "../images/store_inside.jpg";
 
 
 
-// About page component with props received from App.js
+// About page component.
 export default function About() {
-    // Retrieve the userList state from the store
-
   
     return (
       <div className="App full-height">

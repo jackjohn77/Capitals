@@ -1,12 +1,6 @@
-// Import useState, UseEffect, useRef
+// Import frameworks and library's
 import React, { useState } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
-
-import { basketAdd } from "../store/basketState";
-import { showModal } from "../store/reusableModalState";
-
-// Import react components
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -15,19 +9,21 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+// Import store Slice reducers.
+import { basketAdd } from "../store/basketState";
+import { showModal } from "../store/reusableModalState";
+
 // Import child components
 import ReusableModal from "../components/ReusableModal";
 
-
-// Products page component with props received from App.js
-export default function Products({
-  
-}) {
-
+// Products page component shows a mapped cards with images, buttons and
+// dropdown menus. The user can select a colour to buy and click buy to
+// add to the basket. If the user do not select a colour a prompt is shown
+// using a reusable modal.
+export default function Products({ }) {
+  // Retrieve the productState from the Redux store.
   const products = useSelector((state) => state.products.products);
-  const basket = useSelector((state) => state.basket.basket);
   const dispatch = useDispatch();
-
 
   // Create local state that creates and array with matching length to the
   // products array with the initial value being Choose Colour for each.
@@ -36,25 +32,21 @@ export default function Products({
   );
 
   // function that updates the selected colour state value when a colour is
-  // selected. 
+  // selected.
   const handleSelect = (color, index) => {
     const newSelectedColours = [...selectedColours];
     newSelectedColours[index] = color;
     setSelectedColours(newSelectedColours);
   };
   // handles the buy button click but updating the Total price parent state
-  // and sets the has purchased to True to allow for total price element to 
+  // and sets the has purchased to True to allow for total price element to
   // be shown on product and about page.
   const handleBuyClick = (product, color) => {
     if (color === "Choose Colour") {
- 
       dispatch(showModal("Please select a colour?"));
     } else {
-  
       const productWithColor = { ...product, selectedColour: color };
       dispatch(basketAdd(productWithColor));
-      console.table(productWithColor);
-      console.table(basket);
     }
   };
 

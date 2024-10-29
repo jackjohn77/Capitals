@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Create a slice of the Redux store for Todo items
+// Create a slice of the Redux store for basket items
 const basketSlice = createSlice({
   name: "Basket", // Name of the slice
   initialState: {
     // Initial state of the slice
-    basket: [],
+    basket: [], // basket items stored here
     shipment: [
       {
         type: "Standard",
         cost: 5.99,
         del: "3-5",
         info: "Standard delivery costs 5.99 and typically takes 3-5 working days. You can track your package and expect delivery from Monday to Saturday between 9 AM and 6 PM.",
-        selected: true,
+        selected: true, // default selected shipment method
       },
       {
         type: "Premium",
@@ -22,13 +22,13 @@ const basketSlice = createSlice({
         selected: false,
       },
     ],
-    quantity: 0,
-    total: 0,
-    listId: 0,
-    shipmentCost: 5.99,
+    quantity: 0, //Total Quantity of items in the basket
+    total: 0, //Total cost of items in the basket
+    listId: 0, //ID counter for basket items.
+    shipmentCost: 5.99, //Default Shipment cost
   },
   reducers: {
-    // Function to add a new task
+    // Function to add a new item to basket
     basketAdd: (state, action) => {
       const basketItem = state.basket.find(
         (basketItem) =>
@@ -39,21 +39,23 @@ const basketSlice = createSlice({
         const newId = state.listId + 1;
         const addToState = { ...action.payload, id: newId, quantity: 1 };
 
-        state.basket.push(addToState); // Add new task to the list
-        state.quantity += 1; // Increment total task count
-        state.total += action.payload.price;
-        state.listId += 1;
+        state.basket.push(addToState); //Adds new item to basket
+        state.quantity += 1; // Increments basket quantity
+        state.total += action.payload.price; // adds the item cost to the current basket cost
+        state.listId += 1; // Increments list id.
       } else {
         const basketIndex = state.basket.findIndex(
           (basketItem) =>
             basketItem.title === action.payload.title &&
             basketItem.selectedColour === action.payload.selectedColour
         );
-        state.quantity += 1; // Increment total task count
+        state.quantity += 1;
         state.total += action.payload.price;
         state.basket[basketIndex].quantity += 1;
       }
     },
+
+    // Function to decrease item quantity in basket
     basketDecrease: (state, action) => {
       if (state.basket[action.payload].quantity > 1) {
         state.total -= state.basket[action.payload].price;
@@ -61,16 +63,19 @@ const basketSlice = createSlice({
         state.basket[action.payload].quantity -= 1;
       }
     },
-
+    // Function to delete the item from basket in basket
     basketDelete: (state, action) => {
       state.total -=
         state.basket[action.payload].price *
         state.basket[action.payload].quantity;
       state.basket.splice(action.payload, 1);
     },
-
+    // Function to allow the multiple checkbox to only have one item selected
+    // and sets the shipment cost to this.
     shippingCheck: (state, action) => {
-      state.shipment.forEach((ship) => { ship.selected = false });
+      state.shipment.forEach((ship) => {
+        ship.selected = false;
+      });
       state.shipment[action.payload].selected = true;
       state.shipmentCost = state.shipment[action.payload].cost;
     },

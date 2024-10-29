@@ -1,17 +1,20 @@
 // Import frameworks and library's
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css"; // Import Bootstrap Icons CSS
+import "bootstrap-icons/font/bootstrap-icons.css";
 import { useSelector, useDispatch } from "react-redux";
 
 // Import store Slice reducers.
 import { hideModal } from "../store/reusableModalState";
 
-export default function ReusableModal({}) {
+export default function ReusableModal({ }) {
+  // Retrieve the reusableModalState from the Redux store.
   const show = useSelector((state) => state.reusableModal.showModal);
+
+  // message state has already been passed to the store depending on where the
+  // user is so the correct message is displayed.
   const message = useSelector((state) => state.reusableModal.message);
   const dispatch = useDispatch();
-  // Ensure props are destructured
 
   const handleClose = () => dispatch(hideModal());
 

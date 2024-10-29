@@ -1,14 +1,16 @@
 // Import react components
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 // Import formik state
 import { useFormik } from "formik";
 
-import { useSelector, useDispatch } from "react-redux";
+// Import store Slice reducers.
 import { login} from "../store/loginState";
-
 import { showModal } from "../store/reusableModalState";
 
+// Import child components
 import ReusableModal from "../components/ReusableModal";
 
 
@@ -30,7 +32,8 @@ const validate = (values) => {
   return errors;
 };
 
-// function expression will many props to allow for setting or retrieval of states
+// Login page allows user input login credentials and returns successful
+// login or error message saying not recognized.
 const Login = () => {
   // Retrieve the userList state from the store
   const loggedIn = useSelector((state) => state.login.loggedIn);

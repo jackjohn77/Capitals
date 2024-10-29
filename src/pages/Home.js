@@ -2,7 +2,7 @@
 import React from "react";
 import store_front from "../images/store_front.jpg";
 
-// Home component with props to allow for setting or retrieval of states
+// Home component
 export default function Home() {
   return (
     <div>

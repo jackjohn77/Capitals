@@ -1,14 +1,17 @@
 // Import react components
-import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
-import { useFormik } from "formik";
-import { useSelector, useDispatch } from "react-redux";
 import React from "react";
-import { add } from "../store/registrationState";
-import { showModal } from "../store/reusableModalState";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-// Import child components
+// Import formik state
+import { useFormik } from "formik";
 
+// Import store Slice reducers.
+import { add } from "../store/registrationState";
+import { showModal } from "../store/reusableModalState";
+
+// Import child components
 import ReusableModal from "../components/ReusableModal";
 
 // function expression to validate all form input fields.
@@ -55,10 +58,11 @@ const validate = (values) => {
   return errors;
 };
 
-// function expression will many props to allow for setting or retrieval of states
+// Displays a registration user form checking validation and guiding users
+// when validation has not been met. A reusable modal pops up on successful
+// registration.
 const Registration = () => {
   // Retrieve the userList state from the store
-  const userList = useSelector((state) => state.register.list);
   const loggedIn = useSelector((state) => state.login.loggedIn);
   
 

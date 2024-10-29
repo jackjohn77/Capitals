@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Create a slice of the Redux store for Todo items
+// Create a slice of the Redux store for login details
 const loginSlice = createSlice({
   name: "Login", // Name of the slice
   initialState: {
@@ -9,11 +9,12 @@ const loginSlice = createSlice({
     username: "",
   },
   reducers: {
-    // Function to add a new task
+    // logs the user in 
     login: (state, action) => {
       state.username = action.payload; // Set the username
       state.loggedIn = true; // Set loggedIn to true
     },
+    //logs the user out
     logout: (state) => {
       state.username = ""; // Clear the username
       state.loggedIn = false;

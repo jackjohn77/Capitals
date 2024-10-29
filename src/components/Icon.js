@@ -12,8 +12,8 @@ export default function Icon({ index }) {
 
   // Retrieve the basket state from the Redux store.
   const shipping = useSelector((state) => state.basket.shipment);
-  
-  // Local state to control if the modal is active or not.
+
+  // Local state to control if the modal is shown or not.
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
