@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<div
+  className="grey-background"
+>
+  <nav
+    className="navbar navbar-expand-lg navbar-dark bg-dark"
+  >
+    <div
+      className="container"
+    >
+      <a
+        className="navbar-brand"
+        href="/"
+      >
+        <img
+          alt="Brand logo - Capitals"
+          height="100"
+          src="Logo_menu.png"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        className="navbar-toggler collapsed"
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        aria-expanded={null}
+        className="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          className="ms-auto d-lg-flex text-end navbar-nav"
+          onKeyDown={[Function]}
+        >
+          <a
+            aria-current="page"
+            className="nav-link active"
+            href="/"
+            onClick={[Function]}
+          >
+            Home
+          </a>
+          <a
+            className="nav-link"
+            href="/products"
+            onClick={[Function]}
+          >
+            Products
+          </a>
+          <a
+            className="nav-link"
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+          <a
+            className="nav-link"
+            href="/login"
+            onClick={[Function]}
+          >
+            Login
+          </a>
+          <a
+            className="nav-link"
+            href="/register"
+            onClick={[Function]}
+          >
+            Register
+          </a>
+          <a
+            className="nav-link"
+            href="/basket"
+            onClick={[Function]}
+          >
+            Basket 
+          </a>
+        </div>
+        <span
+          className="text-white ms-auto w-100 justify-content-end text-end navbar-text"
+        >
+          You are not logged in
+        </span>
+      </div>
+    </div>
+  </nav>
+  <div>
+    <div
+      className="App full-height"
+    >
+      <h2>
+        Welcome to the homepage!
+      </h2>
+      <hr />
+      <img
+        alt="Store Front"
+        className="img-fluid"
+        src="store_front.jpg"
+        width={800}
+      />
+    </div>
+  </div>
+</div>
+`;
