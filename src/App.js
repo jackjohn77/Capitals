@@ -10,16 +10,12 @@ import Basket from "./pages/Basket";
 import "./App.css";
 
 function App() {
-
-
-
   return (
     <div className="grey-background">
       <Router>
         <Menu />
         <Routes>
-          {/* Routes to home, product and about page. Each carry props for
-        child components so they can use and set states */}
+          {/* Routes to home, product, about page and more*/}
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Create a slice of the Redux store for Todo items
+// Create a slice of the Redux store for registered users
 const registrationSlice = createSlice({
   name: "Register", // Name of the slice
   initialState: {
@@ -8,9 +8,9 @@ const registrationSlice = createSlice({
     list: [],
   },
   reducers: {
-    // Function to add a new task
+    // Function to add a new user
     add: (state, action) => {
-      state.list.push(action.payload); // Add new task to the list
+      state.list.push(action.payload); // Add new user to the list
     },
   },
 });

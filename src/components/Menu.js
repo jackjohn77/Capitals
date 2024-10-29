@@ -45,7 +45,7 @@ export default function Menu() {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-lg-flex text-end">
-            <NavLink to="/" end className="nav-link">
+            <NavLink to="/" end className="nav-link" onClick={handleLinkClick}>
               Home
             </NavLink>
             <NavLink
@@ -73,9 +73,8 @@ export default function Menu() {
               className="nav-link"
               onClick={handleLinkClick}
             >
-              
               {/*Shows the basket quantity when an item is added */}
-              Basket {basketQuantity === 0 ? "" : `(${basketQuantity})`} 
+              Basket {basketQuantity === 0 ? "" : `(${basketQuantity})`}
             </NavLink>
           </Nav>
           {loggedIn ? (
