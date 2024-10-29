@@ -12,7 +12,7 @@ import Icon from "../components/Icon";
 /* Shipment table component, takes the array objects from the basketState.shipment
 and populates a table using map function with ability to check which shipment
 option is required and also click the icon mapped component*/
-export default function Shipment({ }) {
+export default function Shipment() {
   // Retrieve the basketState from the Redux store.
   const shipping = useSelector((state) => state.basket.shipment);
   const totalPrice = useSelector((state) => state.basket.total);

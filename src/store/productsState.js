@@ -93,8 +93,6 @@ const productsSlice = createSlice({
   },
 });
 
-// Export the action functions to be used in components
-export const { } = productsSlice.actions;
 
 // Export the reducer function to be used in the store
 export default productsSlice.reducer;

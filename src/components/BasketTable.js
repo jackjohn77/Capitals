@@ -12,7 +12,7 @@ import trash from "../images/trash.png";
 /* Basket table component, takes the array objects from the basketState and
 populates a table using map function with ability to edit the quantity 
 and delete via buttons. Button clicks invoke the the basketState reducers*/
-export default function BasketTable({ }) {
+export default function BasketTable() {
 
   // Retrieve the basket state from the Redux store.
   const basket = useSelector((state) => state.basket.basket);

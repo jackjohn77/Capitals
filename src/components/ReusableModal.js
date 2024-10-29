@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 // Import store Slice reducers.
 import { hideModal } from "../store/reusableModalState";
 
-export default function ReusableModal({ }) {
+export default function ReusableModal() {
   // Retrieve the reusableModalState from the Redux store.
   const show = useSelector((state) => state.reusableModal.showModal);
 

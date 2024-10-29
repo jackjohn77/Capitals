@@ -20,7 +20,7 @@ import ReusableModal from "../components/ReusableModal";
 // dropdown menus. The user can select a colour to buy and click buy to
 // add to the basket. If the user do not select a colour a prompt is shown
 // using a reusable modal.
-export default function Products({ }) {
+export default function Products() {
   // Retrieve the productState from the Redux store.
   const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();

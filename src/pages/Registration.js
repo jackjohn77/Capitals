@@ -68,9 +68,9 @@ const Registration = () => {
 
   const dispatch = useDispatch();
 
-  {
-    /* initializes the formik hook values */
-  }
+  
+  // initializes the formik hook values
+
   const formik = useFormik({
     initialValues: {
       name: "",

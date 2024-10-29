@@ -81,13 +81,19 @@ export default function Menu() {
             <Nav className="ms-auto w-100 justify-content-end text-end">
               <Navbar.Text className="text-white">
                 Logged in as {username}
-                <a
-                  href="#"
+                <button
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: "0",
+                    color: "inherit",
+                    cursor: "pointer",
+                  }}
                   className="text-white"
                   onClick={() => dispatch(logout())}
                 >
                   (Logout)
-                </a>
+                </button>
               </Navbar.Text>
             </Nav>
           ) : (

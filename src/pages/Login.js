@@ -41,9 +41,8 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  {
-    /* initializes the formik hook values */
-  }
+  // initializes the formik hook values
+  
   const formik = useFormik({
     initialValues: {
       email: "",
