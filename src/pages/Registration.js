@@ -2,7 +2,7 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import { useNavigate } from "react-router-dom";
 
 // Import formik state
 import { useFormik } from "formik";
@@ -64,10 +64,8 @@ const validate = (values) => {
 const Registration = () => {
   // Retrieve the userList state from the store
   const loggedIn = useSelector((state) => state.login.loggedIn);
-  
-
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   
   // initializes the formik hook values
 
@@ -90,6 +88,7 @@ const Registration = () => {
         )
       );
       resetForm();
+      navigate('/login');
     },
   });
 

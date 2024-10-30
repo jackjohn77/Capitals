@@ -1,7 +1,8 @@
 // Import react components
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // Import formik state
 import { useFormik } from "formik";
@@ -40,6 +41,7 @@ const Login = () => {
   const userList = useSelector((state) => state.register.list);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // initializes the formik hook values
   
@@ -59,9 +61,13 @@ const Login = () => {
           user.email === values.email && user.password === values.password
       );
       if (user) {
-
+        dispatch(
+          showModal(
+            `${user.name} you are now Logged in. Happy Shopping!`
+          ));
         dispatch(login(user.name));
         resetForm();
+        navigate('/');
       } else {
      
         dispatch(showModal("Invalid login credentials."));

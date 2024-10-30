@@ -2,7 +2,11 @@
 import React from "react";
 import store_front from "../images/store_front.jpg";
 
-// Home component
+// Import child components
+import ReusableModal from "../components/ReusableModal";
+
+// Home component. reusableModal used to capture async modal when useNavigate 
+// is used on login page.
 export default function Home() {
   return (
     <div>
@@ -11,6 +15,7 @@ export default function Home() {
         <hr />
         <img width={800} alt="Store Front" src={store_front} className="img-fluid"/>
       </div>
+      <ReusableModal/>
     </div>
   );
 }

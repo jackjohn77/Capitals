@@ -97,7 +97,7 @@ export default function Menu() {
               </Navbar.Text>
             </Nav>
           ) : (
-            <Navbar.Text className="text-white ms-auto w-100 justify-content-end text-end">
+            <Navbar.Text className="ms-auto w-100 justify-content-end text-end">
               You are not logged in
             </Navbar.Text>
           )}

@@ -31,7 +31,7 @@ export default function BasketTable() {
               <th>Image</th>
               <th>Item</th>
               <th className="actions-column">Selection</th>
-              <th className="actions-column">cost</th>
+              <th className="actions-column">Cost</th>
               <th>Qty</th>
               <th>Total</th>
               <th>Edit</th>

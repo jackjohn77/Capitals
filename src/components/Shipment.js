@@ -1,13 +1,15 @@
 // Import frameworks and library's
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Table, Container } from "react-bootstrap";
+import { Table, Container, Button } from "react-bootstrap";
 
 // Import store Slice reducers.
 import { shippingCheck } from "../store/basketState";
+import { showModal } from "../store/reusableModalState";
 
 // Import child components
 import Icon from "../components/Icon";
+import ReusableModal from "../components/ReusableModal";
 
 /* Shipment table component, takes the array objects from the basketState.shipment
 and populates a table using map function with ability to check which shipment
@@ -22,8 +24,32 @@ export default function Shipment() {
   // Adds the total item price to selected shipment type.
   const plusShippingCost = totalPrice + shipmentCost;
 
+  // message element used in reusableModel, this contains a map listing
+  // all shipping options info and a link to email for help.
+  const helpMessage = (
+    <div>
+      <h3>Delivery Options</h3>
+      <ul>
+        {shipping.map((shippingItems, index) => (
+          <li key={index}>{shippingItems.info}</li>
+        ))}
+        <br />
+        
+      </ul>
+      <h4>Further Help</h4>
+      <p>Should you require any further help please get in contact -
+        <a 
+            href= "mailto:jackjohn77@msn.com"
+            > Here</a> </p>
+    </div>
+  );
+
+  const handleClick = () => {
+    dispatch(showModal(helpMessage));
+  };
+
   return (
-    <div className="App ">
+    <div className="App">
       <Container>
         <h1>Shipment</h1>
 
@@ -64,6 +90,10 @@ export default function Shipment() {
           </tbody>
         </Table>
       </Container>
+      <Button variant="secondary" onClick={handleClick}>
+        Click for Help with Shipping
+      </Button>
+      <ReusableModal />
     </div>
   );
 }
