@@ -67,11 +67,11 @@ export default function About() {
                 Contact Details
               </h2>
               <p>
-                <b>Address:</b> 9 Queensway, Knutsford, Cheshire, WA16 0NJ,
+                <b>Address:</b> 1 Manchester Road, Manchester, M1 1MM,
                 United Kingdom
               </p>
               <p>
-                <b>Tel:</b> 079278791301
+                <b>Tel:</b> 0123456789
               </p>
               <p>
                 <b>Email:</b> jackjohn77@msn.com{" "}
